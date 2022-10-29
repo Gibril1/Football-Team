@@ -3,6 +3,8 @@ const asyncHandler = require('express-async-handler')
 
 const createPlayer = asyncHandler(async(req, res) => {
     const data = req.body
+
+
     if(
         !data['firstName'] || 
         !data['lastName'] || 

@@ -9,11 +9,14 @@ const  {
     deletePlayer
     }  = require('../controllers/playersControllers')
 
-router.post('/', createPlayer)
-router.get('/all', getPlayers)
+
+const { protect } = require('../middleware/authMiddleware')
+
+router.post('/', protect, createPlayer)
+router.get('/all', protect, getPlayers)
 // router.get('/:id', getPlayer)
 // router.put('/:id', updatePlayer)
 // router.delete('/:id', deletePlayer)
-router.route('/:id').get(getPlayer).put(updatePlayer).delete(deletePlayer)
+router.route('/:id').get(protect, getPlayer).put(protect, updatePlayer).delete(protect, deletePlayer)
 
 module.exports = router
